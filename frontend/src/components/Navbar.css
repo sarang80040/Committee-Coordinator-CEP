@@ -1,0 +1,53 @@
+.main-navbar {
+  height: 70px;
+  background: var(--primary-color);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex; /* Use flexbox */
+  justify-content: space-between; /* This separates brand and links */
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* --- NEW STYLES for the links --- */
+.navbar-links {
+  display: flex;
+  gap: 1.5rem; /* Space between links */
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-bottom: 2px solid transparent; /* Placeholder for active state */
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--white);
+}
+
+/* This is the style for the page we are currently on */
+.nav-link.active {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}

@@ -1,0 +1,128 @@
+/* --- AESTHETIC STYLES WITH FULL-SCREEN PARALLAX (CommitteeLogin.css) --- */
+
+.login-page-fullscreen-wrapper {
+  width: 100vw;
+  height: calc(100vh - 70px); /* Full height MINUS the 70px navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-light); 
+}
+
+.parallax-grid-bg {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: calc(100% + 100px);
+  height: calc(100% + 100px);
+  background-image: 
+    radial-gradient(#bbb 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+  transition: transform 0.2s linear; 
+}
+
+.login-card-layout {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  padding: 0;
+  overflow: hidden;
+  z-index: 2; 
+  position: relative;
+}
+
+.login-identity-panel {
+  flex-basis: 45%;
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.committee-login-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--white);
+  padding: 1rem;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  border: 4px solid var(--accent-color);
+}
+
+.login-identity-panel h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.login-identity-panel p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+}
+
+.login-form-panel {
+  flex-basis: 55%;
+  padding: 3rem;
+  background: var(--white);
+}
+
+.role-selector {
+  display: flex;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.role-selector label {
+  flex: 1; text-align: center; padding: 0.75rem;
+  cursor: pointer; transition: all 0.3s ease;
+  color: var(--text-light); font-weight: 500;
+}
+.role-selector input[type="radio"] { display: none; }
+.role-selector label.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.form-group { margin-bottom: 1.25rem; }
+.form-group label {
+  display: block; font-weight: 600;
+  margin-bottom: 0.5rem; color: var(--primary-color);
+}
+.form-group input {
+  width: 100%; padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: 'Poppins', sans-serif; font-size: 1rem;
+}
+.form-group input:focus {
+  outline: none; border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(1, 111, 190, 0.2);
+}
+
+.login-footer {
+  text-align: center; margin-top: 1.5rem;
+  font-size: 0.8rem; color: #999;
+}
+
+.login-error-message {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.25rem;
+  text-align: center;
+  font-weight: 500;
+}

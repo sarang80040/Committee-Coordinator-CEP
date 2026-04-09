@@ -1,0 +1,32 @@
+/* We use the global .page-container and .page-header from App.css */
+
+.full-announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* This is our list-item card */
+.announcement-list-card {
+  /* We use the global .card style! */
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--accent-color);
+}
+
+.announcement-content h3 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.announcement-content .announcement-date {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+
+.announcement-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

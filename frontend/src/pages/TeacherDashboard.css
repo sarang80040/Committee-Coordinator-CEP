@@ -1,0 +1,146 @@
+/* --- "AESTHETIC" STYLES for TeacherDashboard.jsx --- */
+
+/* 1. Transaction Table (for Expense Queue & History) */
+.transaction-table {
+  width: 100%;
+  overflow-x: auto;
+}
+.transaction-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.transaction-table th,
+.transaction-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+.transaction-table th {
+  font-size: 0.9rem; font-weight: 600;
+  color: var(--text-light); text-transform: uppercase;
+}
+.transaction-table td {
+  font-size: 0.95rem; color: var(--text-color);
+}
+.transaction-table td:nth-child(1),
+.transaction-table td:nth-child(2) {
+  font-weight: 500; color: var(--primary-color);
+}
+.transaction-table td a {
+  font-weight: 600; color: var(--accent-color);
+  text-decoration: none;
+}
+.transaction-table td a:hover { text-decoration: underline; }
+
+/* 2. Action Buttons (Approve/Reject) */
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+.btn-action {
+  border: none; padding: 0.5rem 0.75rem;
+  font-size: 0.85rem; font-weight: 600;
+  border-radius: var(--border-radius);
+  cursor: pointer; transition: all 0.3s ease;
+  display: flex; align-items: center; gap: 0.25rem;
+}
+.btn-approve {
+  background-color: #eafaf1; color: #1e8449;
+}
+.btn-approve:hover {
+  background-color: #1e8449; color: var(--white);
+}
+.btn-reject {
+  background-color: #fdedec; color: #b03a2e;
+}
+.btn-reject:hover {
+  background-color: #b03a2e; color: var(--white);
+}
+
+/* 3. --- NEW "AESTHETIC" SPONSORSHIP QUEUE --- */
+.queue-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.queue-card {
+  padding: 0;
+  border-left: 4px solid var(--accent-color);
+}
+
+.queue-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.queue-card-info h3 {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.queue-card-info p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+.queue-card-info p span {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.queue-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn-expand {
+  background-color: var(--bg-light);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+.btn-expand:hover {
+  background-color: #e9ecef;
+}
+
+/* 4. --- NEW EXPANDABLE DETAILS --- */
+.queue-card-details {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background-color: #fdfdfd;
+}
+.queue-card-details strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+.queue-card-details p {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.queue-card-details p a {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* --- "Beautiful" Expense Detail Modal --- */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
