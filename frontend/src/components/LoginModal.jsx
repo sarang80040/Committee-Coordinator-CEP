@@ -4,12 +4,12 @@ import './LoginModal.css';
 // isOpen and onClose are passed in from Login.jsx
 function LoginModal({ isOpen, onClose }) {
   const [role, setRole] = useState('student'); // 'student' or 'teacher'
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('Logging in with:', { role, email, password });
+    console.log('Logging in with:', { role, username, password });
     
     // --- THIS IS WHERE YOU WILL CALL YOUR BACKEND API ---
     // (We will build this later)
@@ -63,12 +63,12 @@ function LoginModal({ isOpen, onClose }) {
 
           {/* --- FORM FIELDS --- */}
           <div className="form-group">
-            <label htmlFor="email">VJTI Email</label>
+            <label htmlFor="username">Username</label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
