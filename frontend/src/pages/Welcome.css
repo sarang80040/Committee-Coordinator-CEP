@@ -1,0 +1,224 @@
+/* --- "PERFECTED" AESTHETIC STYLES (Welcome.css) --- */
+
+.welcome-container-aesthetic {
+  width: 100%;
+  background-color: var(--bg-light);
+}
+
+/* 1. AESTHETIC "GLASS" HERO */
+.aesthetic-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4rem;
+  min-height: 500px;
+  background-color: var(--primary-color);
+  
+  /* The campus image background */
+  background-image: url('https://vjti.ac.in/wp-content/uploads/2024/06/VJTI-Quad-1-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+}
+/* Fallback for broken image */
+.aesthetic-hero:error {
+  background-image: url('https://placehold.co/1920x800/222222/444444?text=VJTI+Campus');
+}
+
+
+/* The Glassmorphism Panel */
+.hero-text-panel {
+  flex-basis: 500px;
+  padding: 2.5rem;
+  color: var(--white);
+  
+  /* --- The Glass Effect --- */
+  background: rgba(10, 31, 73, 0.4); /* VJTI Blue, 40% opaque */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* --- End Glass Effect --- */
+  
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text-panel h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-text-panel p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 1.5rem 0 2rem 0;
+  line-height: 1.7;
+}
+
+.hero-text-panel .btn-primary {
+  max-width: 250px;
+  text-align: center;
+  background-color: var(--white);
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.hero-text-panel .btn-primary:hover {
+  background-color: #f0f0f0;
+  transform: translateY(0);
+}
+
+
+/* 2. ANNOUNCEMENTS SECTION (On white "card") */
+.announcements-container {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 4rem;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.announcements-header {
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+.announcements-header h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+.announcements-header p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Announcement Card with Icon */
+.announcement-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: var(--white);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+.announcement-card:last-child {
+  border-bottom: none;
+}
+
+.announcement-icon {
+  flex-shrink: 0;
+  padding: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--bg-light);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.announcement-content h3 { 
+  color: var(--primary-color); 
+  font-size: 1.2rem; 
+  margin-bottom: 0.25rem;
+}
+.announcement-content .announcement-date {
+  display: block; font-size: 0.85rem; color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+.announcement-content p { font-size: 0.95rem; line-height: 1.6; }
+
+.view-all-container {
+  text-align: left;
+  margin-top: 2rem;
+}
+.btn-view-all {
+  display: inline-block; text-decoration: none; font-weight: 600;
+  color: var(--accent-color); font-size: 1.1rem; padding: 0.5rem 0;
+  border-radius: var(--border-radius); transition: all 0.3s ease;
+}
+.btn-view-all:hover { color: var(--primary-color); }
+
+/* 3. COMMITTEE GRID SECTION (Stays on light blue bg) */
+.committee-grid-section {
+  padding: 4rem 2rem 6rem 2rem;
+  background-color: var(--bg-light);
+}
+
+.committee-grid-header {
+  max-width: 1100px;
+  margin: 0 auto 2.5rem auto;
+  text-align: left;
+}
+.committee-grid-header h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+.committee-grid-header p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.committee-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+/* The "Premium" Card */
+.committee-card-aesthetic {
+  text-decoration: none;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  border-top: 3px solid transparent; 
+}
+
+.committee-card-aesthetic:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-top-color: var(--accent-color); 
+}
+
+.card-aesthetic-logo {
+  height: 200px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fdfdfd;
+}
+
+.card-aesthetic-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-aesthetic-name {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #f0f0f0;
+}
+
+.card-aesthetic-name h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

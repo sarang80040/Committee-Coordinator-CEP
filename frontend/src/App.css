@@ -1,0 +1,191 @@
+/* --- GLOBAL DESIGN SYSTEM (App.css) --- */
+
+/* 1. REUSABLE PAGE LAYOUT */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* 2. REUSABLE PAGE HEADER */
+/* (For pages like "All Announcements", "Faculty") */
+.page-header {
+  text-align: left;
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+}
+
+/* 3. REUSABLE "PREMIUM" CARD */
+/* (This ONE class will style committees, announcements, etc.) */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  overflow: hidden; /* Ensures clean rounded corners */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 4. REUSABLE BUTTON */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* 5. REUSABLE GRID (For Committees) */
+.committee-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+
+
+/* 5. REUSABLE FORM GROUP */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-group label {
+  display: block; font-weight: 600;
+  margin-bottom: 0.5rem; color: var(--primary-color);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-family: 'Poppins', sans-serif; font-size: 1rem;
+  background-color: #fdfdfd;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(1, 111, 190, 0.2);
+}
+.form-group textarea { min-height: 100px; resize: vertical; }
+
+/* 6. REUSABLE STATUS BADGES */
+.status-badge {
+  padding: 0.25rem 0.75rem; border-radius: 12px;
+  font-size: 0.85rem; font-weight: 600; white-space: nowrap;
+}
+.status-pending {
+  background-color: #fef9e7; color: #b7950b; border: 1px solid #f9e79f;
+}
+.status-approved {
+  background-color: #eafaf1; color: #1e8449; border: 1px solid #a9dfbf;
+}
+.status-rejected {
+  background-color: #fdedec; color: #b03a2e; border: 1px solid #f5b7b1;
+}
+
+/* 7. REUSABLE STAT CARD */
+.stat-card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 700px) {
+  .stat-card-row { grid-template-columns: 1fr; }
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+.stat-card .stat-icon {
+  flex-shrink: 0; width: 50px; height: 50px;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+}
+.stat-card .stat-icon.green {
+  background: #eafaf1; color: #1e8449;
+}
+.stat-card .stat-icon.red {
+  background: #fdedec; color: #b03a2e;
+}
+.stat-card .stat-info h3 {
+  font-size: 0.9rem; color: var(--text-light);
+  font-weight: 500; text-transform: uppercase;
+}
+.stat-card .stat-info p {
+  font-size: 1.8rem; font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* --- ADD THIS TO THE BOTTOM of App.css --- */
+
+/* 8. REUSABLE DASHBOARD TABS */
+/* (We are moving this from StudentDashboard.css) */
+.dashboard-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 1.5rem;
+}
+.tab-button {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: -1px;
+}
+.tab-button:hover {
+  color: var(--primary-color);
+}
+.tab-button.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+.tab-content {
+  padding: 1.5rem;
+}

@@ -1,0 +1,33 @@
+/* --- VJTI Global Theme & Resets (index.css) --- */
+
+/* 1. FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* 2. CSS VARIABLES (Our Color Palette) */
+:root {
+  --primary-color: #0a1f49; /* VJTI Dark Blue */
+  --accent-color: #016fbe;  /* VJTI Bright Blue */
+  --text-color: #333;      /* Darker text for better contrast */
+  --text-light: #6c757d;   /* Lighter grey for subtext */
+  --bg-light: #f8f9fa;    /* A clean, light grey background */
+  --white: #ffffff;
+  --border-color: #dee2e6; /* A clear border color */
+  --border-radius: 8px;
+  /* A subtle, multi-layer shadow for "premium" cards */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 3. GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-light); /* Apply our new light BG */
+  color: var(--text-color);
+  line-height: 1.6;
+}
