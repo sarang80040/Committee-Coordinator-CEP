@@ -29,6 +29,12 @@ const transactionSchema = new mongoose.Schema(
     receiptLink: {
       type: String,
       required: [true, 'Please add a receipt link'],
+      validate: {
+        validator: function (v) {
+          return /^https?:\/\/.+\..+/.test(v);
+        },
+        message: 'Please provide a valid URL (e.g., https://drive.google.com/...)',
+      },
     },
     status: {
       type: String,
