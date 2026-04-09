@@ -6,18 +6,15 @@ function Announcements() {
   return (
     <div className="page-container">
       <div className="page-header" data-aos="fade-down">
-        <h1>All Announcements</h1>
-        <p>A complete archive of all official communication.</p>
+        <h1>Announcements</h1>
+        <p>All updates from the administration.</p>
       </div>
 
       <div className="full-announcements-list">
-        {mockAnnouncements.map((announcement, index) => (
-          // We use the global .card and add animations
-          <div 
-            className="card announcement-list-card" 
+        {mockAnnouncements.map((announcement) => (
+          <div
+            className="card announcement-list-card"
             key={announcement.id}
-            data-aos="fade-up"
-            data-aos-delay={index * 50}
           >
             <div className="announcement-content">
               <h3>{announcement.title}</h3>

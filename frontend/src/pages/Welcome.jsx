@@ -21,39 +21,37 @@ function Welcome() {
   return (
     <div className="welcome-container-aesthetic">
       
-      {/* --- 1. AESTHETIC HERO --- */}
+      {/* --- 1. HERO --- */}
       <header className="aesthetic-hero">
-        <div 
-          className="hero-text-panel" 
-          data-aos="fade-right" // Animation
+        <div
+          className="hero-text-panel"
+          data-aos="fade-right"
         >
           <h1>Committee Coordinator</h1>
           <p>
-            A VJTI portal for financial transparency, expense tracking, 
-            and unified committee management.
+            Track expenses, manage sponsorships, and keep your committee's
+            finances in one place. Built for VJTI committees.
           </p>
           <a href="#committee-grid" className="btn btn-primary">
-            Select Your Committee
+            Get Started
           </a>
         </div>
       </header>
 
       {/* --- 2. ANNOUNCEMENTS SECTION --- */}
-      <section 
+      <section
         className="announcements-container"
-        data-aos="fade-up" // Animation
+        data-aos="fade-up"
       >
         <div className="announcements-header">
-          <h2>Live Announcements</h2>
-          <p>General updates from the college administration</p>
+          <h2>Announcements</h2>
+          <p>Updates from the administration</p>
         </div>
         <div className="announcements-list">
           {announcementsPreview.map((announcement, index) => (
-            <div 
-              className="announcement-card" 
+            <div
+              className="announcement-card"
               key={announcement.id}
-              data-aos="fade-up" // Staggered animation
-              data-aos-delay={index * 100}
             >
               <div className="announcement-icon"><BullhornIcon /></div>
               <div className="announcement-content">
@@ -78,17 +76,15 @@ function Welcome() {
         data-aos="fade-up" // Animation
       >
         <div className="committee-grid-header">
-          <h2>Select Your Committee</h2>
-          <p>Choose your committee to log in and access your dashboard.</p>
+          <h2>Committees</h2>
+          <p>Select your committee to log in.</p>
         </div>
         <div className="committee-grid">
-          {committees.map((committee, index) => (
+          {committees.map((committee) => (
             <Link
               to={`/login/${committee.id}`}
               className="committee-card-aesthetic"
               key={committee.id}
-              data-aos="fade-up" // Staggered animation
-              data-aos-delay={index * 50}
             >
               <div className="card-aesthetic-logo">
                 <img src={committee.logo} alt={committee.name} />

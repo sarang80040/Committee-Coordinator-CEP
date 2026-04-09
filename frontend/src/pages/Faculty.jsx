@@ -10,7 +10,7 @@ function Faculty() {
     <div className="page-container">
       <div className="page-header" data-aos="fade-down">
         <h1>Faculty Advisors</h1>
-        <p>Official faculty managers for VJTI committees.</p>
+        <p>Faculty in-charges for each committee.</p>
       </div>
 
       {/* --- 1. "HEAD ADVISOR" - SEPARATE & PREMIUM --- */}
@@ -40,11 +40,10 @@ function Faculty() {
         <div className="committee-grid-layout">
           {mockFaculty.map((faculty, index) => (
             // This is the "perfected" vertical card
-            <div 
-              className="card faculty-card-vertical" 
+            <div
+              className="card faculty-card-vertical"
               key={faculty.id}
-              data-aos="fade-up" // Staggered animation
-              data-aos-delay={index * 50} 
+              data-aos="fade-up"
             >
               <div className="faculty-photo">
                 <img src={faculty.photo} alt={faculty.name} />

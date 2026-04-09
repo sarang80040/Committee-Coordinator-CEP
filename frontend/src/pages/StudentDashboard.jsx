@@ -170,8 +170,8 @@ function StudentDashboard() {
   return (
     <div className="page-container">
       <div className="page-header" data-aos="fade-down">
-        <h1>Student Dashboard</h1>
-        <p>Welcome, Student Treasurer!</p>
+        <h1>Dashboard</h1>
+        <p>Logged in as {currentUser ? currentUser.username : 'Student Treasurer'}</p>
       </div>
 
       {/* --- 1. "FUND TOTALS" STAT CARDS --- */}

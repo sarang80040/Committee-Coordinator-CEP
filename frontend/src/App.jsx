@@ -16,10 +16,10 @@ function App() {
   
   useEffect(() => {
     AOS.init({
-      duration: 600,
+      duration: 400,
       once: true,
-      easing: 'ease-in-out-quad',
-      offset: 50,
+      easing: 'ease-out',
+      offset: 40,
     });
   }, []);
 

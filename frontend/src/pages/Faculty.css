@@ -73,12 +73,10 @@
   /* --- The "Colour" --- */
   border-top: 4px solid var(--accent-color);
   
-  /* --- The "Animation" (Hover) --- */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .faculty-card-vertical:hover {
-  transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
 }
 

@@ -11,18 +11,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 4rem;
-  min-height: 500px;
+  padding: 3rem;
+  min-height: 420px;
   background-color: var(--primary-color);
   
   /* The campus image background */
   background-image: url('https://vjti.ac.in/wp-content/uploads/2024/06/VJTI-Quad-1-scaled.jpg');
   background-size: cover;
   background-position: center;
-}
-/* Fallback for broken image */
-.aesthetic-hero:error {
-  background-image: url('https://placehold.co/1920x800/222222/444444?text=VJTI+Campus');
 }
 
 
@@ -44,7 +40,7 @@
 }
 
 .hero-text-panel h1 {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -73,8 +69,8 @@
 /* 2. ANNOUNCEMENTS SECTION (On white "card") */
 .announcements-container {
   max-width: 1100px;
-  margin: 4rem auto;
-  padding: 4rem;
+  margin: 3rem auto;
+  padding: 2.5rem;
   background-color: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-soft);
@@ -85,7 +81,7 @@
   margin-bottom: 2.5rem;
 }
 .announcements-header h2 {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   color: var(--primary-color);
 }
 .announcements-header p {
@@ -160,7 +156,7 @@
   text-align: left;
 }
 .committee-grid-header h2 {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   color: var(--primary-color);
 }
 .committee-grid-header p {
@@ -183,14 +179,13 @@
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s ease;
-  border-top: 3px solid transparent; 
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  border-top: 3px solid transparent;
 }
 
 .committee-card-aesthetic:hover {
-  transform: translateY(-8px);
   box-shadow: var(--shadow-hover);
-  border-top-color: var(--accent-color); 
+  border-top-color: var(--accent-color);
 }
 
 .card-aesthetic-logo {

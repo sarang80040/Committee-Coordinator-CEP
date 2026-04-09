@@ -1,7 +1,7 @@
 /* --- VJTI Global Theme & Resets (index.css) --- */
 
 /* 1. FONT IMPORT */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* 2. CSS VARIABLES (Our Color Palette) */
 :root {
@@ -26,8 +26,9 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-light); /* Apply our new light BG */
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
   color: var(--text-color);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }

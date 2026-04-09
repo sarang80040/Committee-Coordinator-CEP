@@ -74,7 +74,7 @@ function TeacherDashboard() {
     <div className="page-container">
       <div className="page-header" data-aos="fade-down">
         <h1>Faculty Dashboard</h1>
-        <p>Welcome, Faculty Advisor!</p>
+        <p>Review and approve committee submissions.</p>
       </div>
 
       {/* --- STAT CARDS (Now with REAL data) --- */}
