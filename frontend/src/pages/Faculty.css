@@ -1,115 +1,119 @@
+/* --- Faculty Page --- */
 
-/* --- "PERFECTED" FACULTY STYLES (Faculty.css) --- */
-
-/* 1. "HEAD ADVISOR" - SEPARATE & PREMIUM */
+/* 1. Head Advisor */
 .head-advisor-section {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .faculty-card-head {
   display: flex;
-  flex-wrap: wrap; /* Wraps on small screens */
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1.5rem 2rem;
-  padding: 2rem;
-  /* --- The "Colour" (Dark & Separate) --- */
-  background: var(--primary-color);
-  color: var(--white);
+  gap: 1.25rem 1.75rem;
+  padding: 1.75rem;
+  background: var(--primary);
+  color: #fff;
   border: none;
+  border-radius: var(--radius);
 }
 
 .faculty-card-head img {
-  width: 100px;
-  height: 100px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--accent-color);
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
 }
 
 .faculty-info-head {
   flex: 1;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .faculty-info-head h3 {
-  color: var(--white);
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.2rem;
 }
 
 .faculty-info-head .faculty-dept-head {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .faculty-committee-tag-head {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--primary-color);
-  background-color: var(--white);
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius);
-  margin-left: auto; /* Pushes to the right */
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: #fff;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-sm);
+  margin-left: auto;
   flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-/* 2. "COMMITTEE ADVISORS" GRID */
+/* 2. Advisor Grid */
 .grid-header {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--primary);
+  margin-bottom: 1.25rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border);
 }
-/* We use .committee-grid-layout from App.css for the grid */
 
-
-/* 3. NEW "PERFECTED" VERTICAL GRID CARD */
-/* This is the design from image_51aeeb.png, but "fixed" */
+/* 3. Vertical Grid Card */
 .faculty-card-vertical {
-  padding: 2rem 1.5rem;
-  text-align: center; /* This "properly aligns" everything */
-  
-  /* --- The "Colour" --- */
-  border-top: 4px solid var(--accent-color);
-  
-  transition: box-shadow 0.2s ease;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  border-top: 3px solid var(--border);
+  background: var(--surface);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  border-radius: var(--radius);
 }
-
 .faculty-card-vertical:hover {
-  box-shadow: var(--shadow-hover);
+  border-top-color: var(--accent);
+  box-shadow: var(--shadow);
 }
 
 .faculty-card-vertical .faculty-photo img {
-  width: 100px;
-  height: 100px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid var(--bg-light);
-  margin-bottom: 1rem;
+  border: 3px solid var(--surface-sunken);
+  margin-bottom: 0.85rem;
 }
 
 .faculty-info-vertical h3 {
-  color: var(--primary-color);
-  font-size: 1.3rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  color: var(--primary);
+  margin-bottom: 0.2rem;
 }
 
 .faculty-info-vertical .faculty-dept-vertical {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.825rem;
+  color: var(--text-subtle);
+  margin-bottom: 1.25rem;
 }
 
-/* General tag for the grid cards */
 .faculty-committee-tag {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-color);
-  background-color: var(--bg-light);
-  padding: 0.3rem 0.8rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  display: inline-block; /* So it's not full-width */
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  background-color: var(--surface-sunken);
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }

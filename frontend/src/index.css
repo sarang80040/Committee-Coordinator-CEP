@@ -1,34 +1,79 @@
-/* --- VJTI Global Theme & Resets (index.css) --- */
+/* --- VJTI Global Theme & Resets --- */
 
-/* 1. FONT IMPORT */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* 1. FONT IMPORT — DM Sans for body, DM Serif Display for headings */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
 
-/* 2. CSS VARIABLES (Our Color Palette) */
+/* 2. CSS VARIABLES */
 :root {
-  --primary-color: #0a1f49; /* VJTI Dark Blue */
-  --accent-color: #016fbe;  /* VJTI Bright Blue */
-  --text-color: #333;      /* Darker text for better contrast */
-  --text-light: #6c757d;   /* Lighter grey for subtext */
-  --bg-light: #f8f9fa;    /* A clean, light grey background */
-  --white: #ffffff;
-  --border-color: #dee2e6; /* A clear border color */
-  --border-radius: 8px;
-  /* A subtle, multi-layer shadow for "premium" cards */
-  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --primary:       #0d2247;   /* VJTI deep navy */
+  --primary-mid:   #1a3a6b;   /* mid-navy for hover states */
+  --accent:        #c8390c;   /* warm saffron-red — a break from generic blue */
+  --accent-muted:  #e8ebe1;   /* sage-tinted neutral for tag backgrounds */
+
+  --text:          #1c1c1e;   /* near-black, softer than pure black */
+  --text-mid:      #4a4a52;   /* secondary text */
+  --text-subtle:   #8e8e99;   /* metadata, hints */
+
+  --surface:       #ffffff;
+  --surface-raised:#f6f5f2;   /* warm off-white, not cold grey */
+  --surface-sunken:#eeece8;   /* slightly deeper for inner panels */
+
+  --border:        #dddbd6;   /* warm grey border */
+  --border-strong: #b5b3ae;
+
+  --radius-sm:     4px;
+  --radius:        8px;
+  --radius-lg:     14px;
+
+  --shadow-sm:  0 1px 3px rgba(13, 34, 71, 0.06), 0 1px 2px rgba(13, 34, 71, 0.04);
+  --shadow:     0 4px 12px rgba(13, 34, 71, 0.08), 0 1px 4px rgba(13, 34, 71, 0.05);
+  --shadow-lg:  0 8px 24px rgba(13, 34, 71, 0.10), 0 2px 8px rgba(13, 34, 71, 0.06);
+
+  --status-ok-bg:   #edf7f0;
+  --status-ok-fg:   #1a6632;
+  --status-ok-bd:   #b0dcc0;
+  --status-warn-bg: #fdf6e3;
+  --status-warn-fg: #8a6300;
+  --status-warn-bd: #e8d69a;
+  --status-err-bg:  #fdf0ec;
+  --status-err-fg:  #9e2a0f;
+  --status-err-bd:  #f0bfb3;
 }
 
 /* 3. GLOBAL RESET */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-color);
-  line-height: 1.6;
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--surface-raised);
+  color: var(--text);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use the serif for character */
+h1, h2, h3 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--primary);
+}
+
+h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+a {
+  color: inherit;
 }

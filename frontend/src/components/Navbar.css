@@ -1,53 +1,62 @@
 .main-navbar {
-  height: 70px;
-  background: var(--primary-color);
-  color: var(--white);
+  height: 60px;
+  background: var(--primary);
+  color: #fff;
   display: flex;
   align-items: center;
   padding: 0 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
+  /* subtle bottom border instead of box-shadow */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .navbar-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex; /* Use flexbox */
-  justify-content: space-between; /* This separates brand and links */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--white);
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #fff;
   text-decoration: none;
+  letter-spacing: 0.01em;
+  opacity: 0.96;
 }
 
-/* --- NEW STYLES for the links --- */
+.navbar-brand:hover {
+  opacity: 1;
+}
+
 .navbar-links {
   display: flex;
-  gap: 1.5rem; /* Space between links */
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .nav-link {
-  color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+  color: rgba(255, 255, 255, 0.62);
   text-decoration: none;
+  font-size: 0.875rem;
   font-weight: 500;
-  padding: 0.5rem;
-  border-bottom: 2px solid transparent; /* Placeholder for active state */
-  transition: all 0.3s ease;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s ease, background 0.15s ease;
 }
 
 .nav-link:hover {
-  color: var(--white);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* This is the style for the page we are currently on */
 .nav-link.active {
-  color: var(--white);
-  border-bottom-color: var(--white);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
 }

@@ -1,218 +1,274 @@
-/* --- "PERFECTED" AESTHETIC STYLES (Welcome.css) --- */
+/* --- Welcome Page --- */
 
-.welcome-container-aesthetic {
+.welcome-container {
   width: 100%;
-  background-color: var(--bg-light);
+  background-color: var(--surface-raised);
 }
 
-/* 1. AESTHETIC "GLASS" HERO */
-.aesthetic-hero {
+/* ─────────────────────────────────────────
+   1. HERO
+   Full-bleed image with a dark scrim.
+   Text sits bottom-left, no floating glass card.
+───────────────────────────────────────── */
+.welcome-hero {
   position: relative;
+  min-height: 380px;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 3rem;
-  min-height: 420px;
-  background-color: var(--primary-color);
-  
-  /* The campus image background */
+  align-items: flex-end;
+  padding: 0;
+  overflow: hidden;
+
+  background-color: var(--primary);
   background-image: url('https://vjti.ac.in/wp-content/uploads/2024/06/VJTI-Quad-1-scaled.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
 }
 
-
-/* The Glassmorphism Panel */
-.hero-text-panel {
-  flex-basis: 500px;
-  padding: 2.5rem;
-  color: var(--white);
-  
-  /* --- The Glass Effect --- */
-  background: rgba(10, 31, 73, 0.4); /* VJTI Blue, 40% opaque */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  /* --- End Glass Effect --- */
-  
-  border-radius: var(--border-radius);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+/* gradient scrim — heavy at bottom, lighter at top */
+.welcome-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(13, 34, 71, 0.82) 0%,
+    rgba(13, 34, 71, 0.28) 55%,
+    rgba(13, 34, 71, 0.10) 100%
+  );
+  pointer-events: none;
 }
 
-.hero-text-panel h1 {
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 1.2;
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
 }
 
-.hero-text-panel p {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 1.5rem 0 2rem 0;
-  line-height: 1.7;
-}
-
-.hero-text-panel .btn-primary {
-  max-width: 250px;
-  text-align: center;
-  background-color: var(--white);
-  color: var(--primary-color);
-  font-weight: 700;
-}
-
-.hero-text-panel .btn-primary:hover {
-  background-color: #f0f0f0;
-  transform: translateY(0);
-}
-
-
-/* 2. ANNOUNCEMENTS SECTION (On white "card") */
-.announcements-container {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 2.5rem;
-  background-color: var(--white);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-soft);
-}
-
-.announcements-header {
-  text-align: left;
-  margin-bottom: 2.5rem;
-}
-.announcements-header h2 {
-  font-size: 1.8rem;
-  color: var(--primary-color);
-}
-.announcements-header p {
-  font-size: 1.1rem;
-  color: var(--text-light);
-}
-
-.announcements-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Announcement Card with Icon */
-.announcement-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  background: var(--white);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid var(--border-color);
-}
-.announcement-card:last-child {
-  border-bottom: none;
-}
-
-.announcement-icon {
-  flex-shrink: 0;
-  padding: 0.75rem;
-  border-radius: 50%;
-  background-color: var(--bg-light);
-  color: var(--accent-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.announcement-content h3 { 
-  color: var(--primary-color); 
-  font-size: 1.2rem; 
-  margin-bottom: 0.25rem;
-}
-.announcement-content .announcement-date {
-  display: block; font-size: 0.85rem; color: var(--text-light);
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 0.75rem;
 }
-.announcement-content p { font-size: 0.95rem; line-height: 1.6; }
 
-.view-all-container {
-  text-align: left;
-  margin-top: 2rem;
-}
-.btn-view-all {
-  display: inline-block; text-decoration: none; font-weight: 600;
-  color: var(--accent-color); font-size: 1.1rem; padding: 0.5rem 0;
-  border-radius: var(--border-radius); transition: all 0.3s ease;
-}
-.btn-view-all:hover { color: var(--primary-color); }
-
-/* 3. COMMITTEE GRID SECTION (Stays on light blue bg) */
-.committee-grid-section {
-  padding: 4rem 2rem 6rem 2rem;
-  background-color: var(--bg-light);
+.hero-content h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.2;
+  max-width: 520px;
+  margin-bottom: 0.75rem;
 }
 
-.committee-grid-header {
-  max-width: 1100px;
-  margin: 0 auto 2.5rem auto;
-  text-align: left;
+.hero-content p {
+  font-size: 0.975rem;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 420px;
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
 }
-.committee-grid-header h2 {
-  font-size: 1.8rem;
-  color: var(--primary-color);
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: #fff;
+  color: var(--primary);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
-.committee-grid-header p {
-  font-size: 1.1rem;
-  color: var(--text-light);
+.hero-cta:hover {
+  background: var(--surface-raised);
+}
+
+/* ─────────────────────────────────────────
+   2. BODY SECTIONS (shared wrapper)
+───────────────────────────────────────── */
+.welcome-body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ─────────────────────────────────────────
+   3. SECTION HEADINGS
+───────────────────────────────────────── */
+.section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-subtle);
+  margin-bottom: 0.6rem;
+}
+
+.section-heading {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+
+.section-sub {
+  font-size: 0.9rem;
+  color: var(--text-subtle);
+}
+
+/* ─────────────────────────────────────────
+   4. ANNOUNCEMENTS
+───────────────────────────────────────── */
+.announcements-section {}
+
+.announcements-head {
+  margin-bottom: 1.5rem;
+}
+
+.announcements-stack {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.announcement-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+.announcement-row:last-child {
+  border-bottom: none;
+}
+.announcement-row:hover {
+  background: var(--surface-raised);
+}
+
+.ann-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+.ann-body {}
+
+.ann-body h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.2rem;
+}
+
+.ann-meta {
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  margin-bottom: 0.4rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.ann-body p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  padding-bottom: 1px;
+  border-bottom: 1px solid var(--border-strong);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.view-all-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ─────────────────────────────────────────
+   5. COMMITTEE GRID
+───────────────────────────────────────── */
+.committees-section {}
+
+.committees-head {
+  margin-bottom: 1.5rem;
 }
 
 .committee-grid {
-  max-width: 1100px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1rem;
 }
 
-/* The "Premium" Card */
-.committee-card-aesthetic {
+.committee-card {
   text-decoration: none;
-  background: var(--white);
-  border-radius: var(--border-radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  border-top: 3px solid transparent;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+  display: flex;
+  flex-direction: column;
+}
+.committee-card:hover {
+  border-color: var(--primary-mid);
+  box-shadow: var(--shadow);
 }
 
-.committee-card-aesthetic:hover {
-  box-shadow: var(--shadow-hover);
-  border-top-color: var(--accent-color);
-}
-
-.card-aesthetic-logo {
-  height: 200px;
-  padding: 1rem;
+.committee-card-logo {
+  height: 140px;
+  padding: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fdfdfd;
+  background: var(--surface-raised);
 }
 
-.card-aesthetic-logo img {
+.committee-card-logo img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-.card-aesthetic-name {
-  padding: 1rem;
-  text-align: center;
-  border-top: 1px solid #f0f0f0;
+.committee-card-name {
+  padding: 0.7rem 0.9rem;
+  border-top: 1px solid var(--border);
 }
 
-.card-aesthetic-name h3 {
-  color: var(--primary-color);
-  font-size: 1.1rem;
+.committee-card-name h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
   font-weight: 600;
+  color: var(--primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
