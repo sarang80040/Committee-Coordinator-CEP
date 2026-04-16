@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../api';
 import './Announcements.css';
 
 function Announcements() {
@@ -7,7 +8,7 @@ function Announcements() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/announcements')
+    axios.get(`${API_BASE}/api/announcements`)
       .then(res => setAnnouncements(res.data))
       .catch(err => console.error(err))
       .finally(() => setLoading(false));

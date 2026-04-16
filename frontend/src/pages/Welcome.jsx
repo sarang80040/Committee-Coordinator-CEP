@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { committees } from '../committees';
+import { API_BASE } from '../api';
 import './Welcome.css';
 
 const BullhornIcon = () => (
@@ -14,7 +15,7 @@ function Welcome() {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/announcements')
+    axios.get(`${API_BASE}/api/announcements`)
       .then(res => setAnnouncements(res.data.slice(0, 3)))
       .catch(err => console.error(err));
   }, []);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../api';
 import './StudentDashboard.css';
 import ExpenseDetailModal from '../components/ExpenseDetailModal';
 
@@ -48,13 +49,13 @@ function StudentDashboard() {
   // --- API Call: Fetch All Data ---
   const fetchData = async () => {
     try {
-      const { data: fundData } = await axios.get('http://localhost:5000/api/funds/my-committee', authConfig);
+      const { data: fundData } = await axios.get(`${API_BASE}/api/funds/my-committee`, authConfig);
       setFunds(fundData);
       
-      const { data: expenseData } = await axios.get('http://localhost:5000/api/transactions/my-transactions', authConfig);
+      const { data: expenseData } = await axios.get(`${API_BASE}/api/transactions/my-transactions`, authConfig);
       setExpenses(expenseData);
       
-      const { data: sponsorData } = await axios.get('http://localhost:5000/api/sponsorships/my-sponsorships', authConfig);
+      const { data: sponsorData } = await axios.get(`${API_BASE}/api/sponsorships/my-sponsorships`, authConfig);
       setSponsorships(sponsorData);
 
     } catch (err) { console.error('Error fetching data:', err); }
@@ -76,7 +77,7 @@ function StudentDashboard() {
     try {
       const config = { headers: { 'Content-Type': 'application/json', ...authConfig.headers } };
       const expenseData = { title, amount, category, description, receiptLink };
-      await axios.post('http://localhost:5000/api/transactions', expenseData, config);
+      await axios.post(`${API_BASE}/api/transactions`, expenseData, config);
       setLoading(false);
       setSuccess('Expense submitted successfully!');
       setTitle(''); setAmount(''); setDescription(''); setReceiptLink('');
@@ -97,7 +98,7 @@ function StudentDashboard() {
         companyName, companyOrigin, description: sponsorDesc, documentLink, 
         amountPledged, contactPerson, contactEmail 
       };
-      await axios.post('http://localhost:5000/api/sponsorships', sponsorData, config);
+      await axios.post(`${API_BASE}/api/sponsorships`, sponsorData, config);
       
       setLoading(false);
       setSuccess('Sponsorship logged successfully!');

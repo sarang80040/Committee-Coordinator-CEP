@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { committees } from '../committees';
 import './CommitteeLogin.css';
 import axios from 'axios';
+import { API_BASE } from '../api';
 
 function CommitteeLogin() {
   const [role, setRole] = useState('student');
@@ -41,7 +42,7 @@ function CommitteeLogin() {
       };
       
       const response = await axios.post(
-        'http://localhost:5000/api/auth/login', 
+        `${API_BASE}/api/auth/login`,
         loginData
       );
 

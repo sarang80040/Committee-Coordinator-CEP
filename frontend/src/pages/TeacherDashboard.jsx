@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../api';
 import './TeacherDashboard.css';
 import ExpenseDetailModal from '../components/ExpenseDetailModal';
 
@@ -41,10 +42,10 @@ function TeacherDashboard() {
     setLoading(true);
     try {
       const [fundData, expenseData, sponsorData, annData] = await Promise.all([
-        axios.get('http://localhost:5000/api/funds/my-committee', authConfig),
-        axios.get('http://localhost:5000/api/transactions/committee', authConfig),
-        axios.get('http://localhost:5000/api/sponsorships/committee', authConfig),
-        axios.get('http://localhost:5000/api/announcements'),
+        axios.get(`${API_BASE}/api/funds/my-committee`, authConfig),
+        axios.get(`${API_BASE}/api/transactions/committee`, authConfig),
+        axios.get(`${API_BASE}/api/sponsorships/committee`, authConfig),
+        axios.get(`${API_BASE}/api/announcements`),
       ]);
       setFunds(fundData.data);
       setTransactions(expenseData.data);
@@ -63,7 +64,7 @@ function TeacherDashboard() {
   const handleApprove = async (id) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json', ...authConfig.headers } };
-      await axios.put(`http://localhost:5000/api/transactions/${id}/status`, { status: 'approved' }, config);
+      await axios.put(`${API_BASE}/api/transactions/${id}/status`, { status: 'approved' }, config);
       fetchData();
     } catch (err) { console.error(err); }
   };
@@ -80,7 +81,7 @@ function TeacherDashboard() {
     try {
       const config = { headers: { 'Content-Type': 'application/json', ...authConfig.headers } };
       await axios.put(
-        `http://localhost:5000/api/transactions/${rejectTarget.id}/status`,
+        `${API_BASE}/api/transactions/${rejectTarget.id}/status`,
         { status: 'rejected', rejectionReason },
         config
       );
@@ -94,7 +95,7 @@ function TeacherDashboard() {
   const handleUpdateSponsorshipStatus = async (id, newStatus) => {
     try {
       const config = { headers: { 'Content-Type': 'application/json', ...authConfig.headers } };
-      await axios.put(`http://localhost:5000/api/sponsorships/${id}/status`, { status: newStatus }, config);
+      await axios.put(`${API_BASE}/api/sponsorships/${id}/status`, { status: newStatus }, config);
       fetchData();
     } catch (err) { console.error(err); }
   };
@@ -105,7 +106,7 @@ function TeacherDashboard() {
     setAnnLoading(true); setAnnSuccess(''); setAnnError('');
     try {
       const config = { headers: { 'Content-Type': 'application/json', ...authConfig.headers } };
-      await axios.post('http://localhost:5000/api/announcements', { title: annTitle, body: annBody }, config);
+      await axios.post(`${API_BASE}/api/announcements`, { title: annTitle, body: annBody }, config);
       setAnnTitle(''); setAnnBody('');
       setAnnSuccess('Announcement posted successfully!');
       fetchData();
@@ -119,7 +120,7 @@ function TeacherDashboard() {
   const handleDeleteAnnouncement = async (id) => {
     if (!window.confirm('Delete this announcement?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/announcements/${id}`, authConfig);
+      await axios.delete(`${API_BASE}/api/announcements/${id}`, authConfig);
       fetchData();
     } catch (err) { console.error(err); }
   };
