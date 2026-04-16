@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { io } from 'socket.io-client';
 import { API_BASE } from '../api';
 import './StudentDashboard.css';
 import ExpenseDetailModal from '../components/ExpenseDetailModal';
@@ -43,6 +44,12 @@ function StudentDashboard() {
   const [selectedExpense, setSelectedExpense] = useState(null);
   const [currentUser, setCurrentUser] = useState(null); // <-- CHANGE 1: NEW STATE FOR USER
 
+  // WebSockets Chat stuff
+  const [chatMessages, setChatMessages] = useState([]);
+  const [newChatMessage, setNewChatMessage] = useState('');
+  const socketRef = useRef(null);
+  const messagesEndRef = useRef(null);
+
   const getToken = () => localStorage.getItem('token');
   const authConfig = { headers: { Authorization: `Bearer ${getToken()}` } };
 
@@ -69,6 +76,58 @@ function StudentDashboard() {
       setCurrentUser(userFromStorage);
     }
   }, []);
+
+  // Set up WebSockets & Load Messages when activeTab is 'messages'
+  useEffect(() => {
+    if (activeTab === 'messages' && currentUser) {
+      // 1. Fetch initial messages
+      const fetchMessages = async () => {
+        try {
+          const { data } = await axios.get(`${API_BASE}/api/messages`, authConfig);
+          setChatMessages(data);
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        } catch (err) {
+          console.error('Error fetching messages', err);
+        }
+      };
+      
+      fetchMessages();
+
+      // Setup socket connection
+      socketRef.current = io(API_BASE);
+
+      socketRef.current.on('connect', () => {
+        socketRef.current.emit('join_committee', currentUser.committee);
+      });
+
+      socketRef.current.on('receive_message', (message) => {
+        setChatMessages((prev) => {
+          // Avoid duplicates if requested in same session
+          if (prev.find(m => m._id === message._id)) return prev;
+          return [...prev, message];
+        });
+        setTimeout(() => {
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      });
+
+      return () => {
+        if (socketRef.current) socketRef.current.disconnect();
+      };
+    }
+  }, [activeTab, currentUser]);
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (!newChatMessage.trim()) return;
+    
+    try {
+      await axios.post(`${API_BASE}/api/messages`, { text: newChatMessage }, authConfig);
+      setNewChatMessage('');
+    } catch (err) {
+      console.error('Error sending message', err);
+    }
+  };
 
   // --- Form Submit: Expense ---
   const handleSubmitExpense = async (e) => {
@@ -304,11 +363,43 @@ function StudentDashboard() {
             </div>
           )}
 
-          {/* --- Tab 3: Messages (Placeholder) --- */}
+          {/* --- Tab 3: Messages --- */}
           {activeTab === 'messages' && (
-            <div className="form-container">
-              <h2>Messages</h2>
-              <p>This will be the chat application with your faculty advisor.</p>
+            <div className="form-container messages-container" style={{ display: 'flex', flexDirection: 'column', height: '500px' }}>
+              <h2>Committee Messages</h2>
+              <div className="chat-window" style={{ flex: 1, overflowY: 'auto', padding: '10px', border: '1px solid #ccc', borderRadius: '8px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {chatMessages.length === 0 && <p style={{textAlign: 'center', color: '#888'}}>No messages yet. Say hi!</p>}
+                {chatMessages.map((msg, index) => {
+                  const senderId = msg.sender?._id || msg.sender;
+                  const isMine = senderId === currentUser?._id || senderId === currentUser?.id;
+                  return (
+                    <div key={index} style={{
+                      alignSelf: isMine ? 'flex-end' : 'flex-start',
+                      backgroundColor: isMine ? '#e1f5fe' : '#f1f1f1',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      maxWidth: '70%'
+                    }}>
+                      <strong style={{ display: 'block', fontSize: '0.8rem', color: '#555', marginBottom: '4px' }}>
+                        {msg.sender?.username || 'Unknown'} ({msg.sender?.role || 'user'})
+                      </strong>
+                      <span>{msg.text}</span>
+                    </div>
+                  );
+                })}
+                <div ref={messagesEndRef} />
+              </div>
+              <form onSubmit={handleSendMessage} style={{ display: 'flex', gap: '10px' }}>
+                <input
+                  type="text"
+                  value={newChatMessage}
+                  onChange={(e) => setNewChatMessage(e.target.value)}
+                  placeholder="Type your message..."
+                  style={{ flex: 1, padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
+                  required
+                />
+                <button type="submit" className="btn btn-primary" disabled={loading}>Send</button>
+              </form>
             </div>
           )}
         </div>

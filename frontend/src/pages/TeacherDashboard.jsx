@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { io } from 'socket.io-client';
 import { API_BASE } from '../api';
 import './TeacherDashboard.css';
 import ExpenseDetailModal from '../components/ExpenseDetailModal';
@@ -24,6 +25,14 @@ function TeacherDashboard() {
   // Rejection reason modal state
   const [rejectTarget, setRejectTarget] = useState(null); // { id }
   const [rejectionReason, setRejectionReason] = useState('');
+
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // WebSockets Chat stuff
+  const [chatMessages, setChatMessages] = useState([]);
+  const [newChatMessage, setNewChatMessage] = useState('');
+  const socketRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
   // Announcement form state
   const [annTitle, setAnnTitle] = useState('');
@@ -58,7 +67,64 @@ function TeacherDashboard() {
     setLoading(false);
   };
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => { 
+    fetchData(); 
+    
+    // Load current user from local storage
+    const userFromStorage = JSON.parse(localStorage.getItem('user'));
+    if (userFromStorage) {
+      setCurrentUser(userFromStorage);
+    }
+  }, []);
+
+  // WebSockets logic for Chat
+  useEffect(() => {
+    if (activeTab === 'messages' && currentUser) {
+      // Fetch initial messages
+      const fetchMessages = async () => {
+        try {
+          const { data } = await axios.get(`${API_BASE}/api/messages`, authConfig);
+          setChatMessages(data);
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        } catch (err) {
+          console.error('Error fetching messages', err);
+        }
+      };
+      fetchMessages();
+
+      // Setup socket
+      socketRef.current = io(API_BASE);
+
+      socketRef.current.on('connect', () => {
+        socketRef.current.emit('join_committee', currentUser.committee);
+      });
+
+      socketRef.current.on('receive_message', (message) => {
+        setChatMessages((prev) => {
+          if (prev.find(m => m._id === message._id)) return prev;
+          return [...prev, message];
+        });
+        setTimeout(() => {
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      });
+
+      return () => {
+        if (socketRef.current) socketRef.current.disconnect();
+      };
+    }
+  }, [activeTab, currentUser]);
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (!newChatMessage.trim()) return;
+    try {
+      await axios.post(`${API_BASE}/api/messages`, { text: newChatMessage }, authConfig);
+      setNewChatMessage('');
+    } catch (err) {
+      console.error('Error sending message', err);
+    }
+  };
 
   // Approve expense directly
   const handleApprove = async (id) => {
@@ -180,6 +246,9 @@ function TeacherDashboard() {
           </button>
           <button className={`tab-button ${activeTab === 'announcements' ? 'active' : ''}`} onClick={() => setActiveTab('announcements')}>
             Announcements
+          </button>
+          <button className={`tab-button ${activeTab === 'messages' ? 'active' : ''}`} onClick={() => setActiveTab('messages')}>
+            Messages
           </button>
         </div>
 
@@ -334,6 +403,46 @@ function TeacherDashboard() {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Tab 5: Messages */}
+          {activeTab === 'messages' && (
+            <div className="form-container messages-container" style={{ display: 'flex', flexDirection: 'column', height: '500px' }}>
+              <h2>Committee Messages</h2>
+              <div className="chat-window" style={{ flex: 1, overflowY: 'auto', padding: '10px', border: '1px solid #ccc', borderRadius: '8px', marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {chatMessages.length === 0 && <p style={{textAlign: 'center', color: '#888'}}>No messages yet. Say hi!</p>}
+                {chatMessages.map((msg, index) => {
+                  const senderId = msg.sender?._id || msg.sender;
+                  const isMine = senderId === currentUser?._id || senderId === currentUser?.id;
+                  return (
+                    <div key={index} style={{
+                      alignSelf: isMine ? 'flex-end' : 'flex-start',
+                      backgroundColor: isMine ? '#e1f5fe' : '#f1f1f1',
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      maxWidth: '70%'
+                    }}>
+                      <strong style={{ display: 'block', fontSize: '0.8rem', color: '#555', marginBottom: '4px' }}>
+                        {msg.sender?.username || 'Unknown'} ({msg.sender?.role || 'user'})
+                      </strong>
+                      <span>{msg.text}</span>
+                    </div>
+                  );
+                })}
+                <div ref={messagesEndRef} />
+              </div>
+              <form onSubmit={handleSendMessage} style={{ display: 'flex', gap: '10px' }}>
+                <input
+                  type="text"
+                  value={newChatMessage}
+                  onChange={(e) => setNewChatMessage(e.target.value)}
+                  placeholder="Type your message..."
+                  style={{ flex: 1, padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }}
+                  required
+                />
+                <button type="submit" className="btn btn-primary" disabled={loading}>Send</button>
+              </form>
             </div>
           )}
         </div>
